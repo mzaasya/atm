@@ -1,0 +1,32 @@
+version: '3'
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: mini-atm
+        container_name: mini-atm
+        restart: unless-stopped
+        environment:
+            - DB_HOST=db
+            - DB_PORT=3306
+        depends_on:
+            - db
+        ports:
+            - 8000:80
+        networks:
+            - mini-atm
+    db:
+        image: mysql:8.0
+        container_name: mini-atm-db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
+        networks:
+            - mini-atm
+networks:
+    mini-atm:
+        driver: bridge

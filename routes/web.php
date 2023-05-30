@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [Controller::class, 'view']);
+Route::get('transactions', [Controller::class, 'history']);
+
+Route::post('/', [Controller::class, 'transaction']);
+Route::post('user', [Controller::class, 'getUser']);

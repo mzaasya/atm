@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->bigInteger('balance');
+            $table->integer('pin_number');
+            $table->bigInteger('card_number')->unique();
             $table->timestamps();
         });
     }
