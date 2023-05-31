@@ -30,6 +30,8 @@ class Controller extends BaseController
             'transactions.value',
             'transactions.created_at',
             'users.card_number',
+            'machines.code',
+            'machines.location',
         ]);
         $query->leftJoin('machines', 'transactions.machine_id', '=', 'machines.id');
         $query->leftJoin('users', 'transactions.user_id', '=', 'users.id');

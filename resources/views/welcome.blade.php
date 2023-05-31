@@ -232,6 +232,7 @@
                             <div style="font-size: 0.8rem;">${d.card_number}</div>
                             <div style="font-size: 0.8rem;">${d.type.toUpperCase()}</div>
                             <div style="font-size: 0.8rem;"><b>${formatter.format(d.value)}</b></div>
+                            <div style="font-size: 0.8rem;">${d.code} (${d.location})</div>
                         </li>`;
                     }
                     $('#history').html(list);
