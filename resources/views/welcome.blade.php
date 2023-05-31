@@ -174,6 +174,7 @@
                     success: function(data) {
                         const type = data.statusCode == 400 ? 'danger' : 'success';
                         stopLoading();
+                        getMachines();
                         getTransactions();
                         showToast(type, data.message);
                         $('#machine, #card').trigger('change');
@@ -214,6 +215,26 @@
             $('#toast-result').toast('show');
         }
 
+        function getMachines() {
+            startLoading();
+            $.ajax({
+                url: '/machines',
+                type: 'get',
+                dataType: 'json',
+                headers: {'X-CSRF-TOKEN': token},
+                success: function(data) {
+                    stopLoading();
+                    let list = '';
+                    const selectedMachine = $('#machine').find(':selected').val();
+                    for (const d of data) {
+                        list += `<option value="${d.id}" data-balance="${d.balance}" ${d.id == selectedMachine ? 'selected' : ''}>${d.code} (${d.location})</option>`;
+                    }
+                    $('#machine').html(list);
+                    $('#machine').trigger('change');
+                }
+            })
+        }
+        
         function getTransactions() {
             startLoading();
             $.ajax({

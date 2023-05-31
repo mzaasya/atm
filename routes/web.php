@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [Controller::class, 'view']);
+Route::get('machines', [Controller::class, 'getMachines']);
 Route::get('transactions', [Controller::class, 'history']);
 
 Route::post('/', [Controller::class, 'transaction']);

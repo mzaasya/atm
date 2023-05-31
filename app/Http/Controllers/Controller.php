@@ -36,7 +36,7 @@ class Controller extends BaseController
         $query->leftJoin('machines', 'transactions.machine_id', '=', 'machines.id');
         $query->leftJoin('users', 'transactions.user_id', '=', 'users.id');
         $query->orderBy('transactions.created_at', 'desc');
-        $query->limit(5);
+        $query->limit(3);
         return json_encode($query->get());
     }
 
@@ -113,5 +113,11 @@ class Controller extends BaseController
             'pin_number' => $request->input('pin'),
         ])->first();
         return json_encode($user);
+    }
+    
+    public function getMachines()
+    {
+        $machines = DB::table('machines')->get();
+        return json_encode($machines);
     }
 }
