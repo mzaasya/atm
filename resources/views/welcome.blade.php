@@ -172,7 +172,6 @@
                     data: {card, pin, type, value, machine},
                     headers: {'X-CSRF-TOKEN': token},
                     success: function(data) {
-                        console.log(data);
                         const type = data.statusCode == 400 ? 'danger' : 'success';
                         stopLoading();
                         getTransactions();
@@ -224,7 +223,6 @@
                 headers: {'X-CSRF-TOKEN': token},
                 success: function(data) {
                     stopLoading();
-                    console.log(data);
                     let list = '';
                     for (const d of data) {
                         list += `<li class="list-group-item text-center p-2">
