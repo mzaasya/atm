@@ -2,7 +2,6 @@
 
 This project is made using PHP Framework Laravel for author job interview test.
 Mini ATM is simple project of how ATM (Auto Teller Machine) works.
-This project used laravel sail to implement docker.
 
 ## How to Use This on Your Local
 
@@ -10,7 +9,7 @@ There is two options, with & without docker.
 
 ### Without Docker
 
-- You should had XAMPP or other RDBMS installed on your local
+- You need XAMPP or other RDBMS installed on your local
 - Create database named "atm"
 - Set database in .env file on your project root
 - Run command "php artisan migrate" to create table automatically
@@ -20,8 +19,12 @@ There is two options, with & without docker.
 - There are two users from seed with card number 1122334455667788 & 8877665544332211 with the same pin 123456
 
 ### With Docker
-- You should had docker CLI or docker desktop installed and running on your local
+- You need docker CLI or docker desktop installed and running on your local
 - Change "DB_USERNAME" and "DB_PASSWORD" in your .env file if it's still root with blank password
 - Run command "docker compose up -d" from your project root
 - Run command "docker exec -t mini-atm bash" and then run "php artisan migrate" & "php artisan db:seed"
-- Your app should be running on localhost port 8000
+- Access your app on http://localhost:8000
+- There are two users from seed with card number 1122334455667788 & 8877665544332211 with the same pin 123456
+
+
+Author: Muhammad Zia Abdillah Asya

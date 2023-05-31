@@ -115,11 +115,11 @@
                 const card = $('#card').val();
                 const pin = $('#pin').val();
                 if (!isCardValid(card)) {
-                    alert('Nomor rekening harus 16 digit.');
+                    showToast('danger', 'Nomor rekening harus 16 digit.');
                     return;
                 }
                 if (!isPinValid(pin)) {
-                    alert('PIN harus 6 digit.');
+                    showToast('danger', 'PIN harus 6 digit.');
                     return;
                 }
                 startLoading();
@@ -135,7 +135,7 @@
                             $('#user-balance').html('Sisa saldo anda: <b>' + formatter.format(data.balance) + '</b>');
                         }else{
                             $('#user-balance').html('Sisa saldo anda: <b>' + formatter.format(0) + '</b>');
-                            alert('Data user tidak ditemukan.')
+                            showToast('danger', 'Data user tidak ditemukan.')
                         }
                     }
                 })
@@ -149,19 +149,19 @@
                 const value = $('#value').val();
                 const balance = $('#machine').find(':selected').data('balance');
                 if (!isCardValid(card)) {
-                    alert('Nomor rekening harus 16 digit.');
+                    showToast('danger', 'Nomor rekening harus 16 digit.');
                     return;
                 }
                 if (!isPinValid(pin)) {
-                    alert('PIN harus 6 digit.');
+                    showToast('danger', 'PIN harus 6 digit.');
                     return;
                 }
                 if (!isValueValid(value)) {
-                    alert('Transaksi hanya dapat dilakukan dengan kelipatan 50.000 atau 100.0000');
+                    showToast('danger', 'Transaksi hanya dapat dilakukan dengan kelipatan 50.000 atau 100.0000');
                     return;
                 }
                 if (type == 'withdraw' && !isBalanceEnough(value, balance)) {
-                    alert('Saldo ATM tidak mencukupi, pastikan jumlah penarikan tidak lebih dari ' + balance);
+                    showToast('danger', 'Saldo ATM tidak mencukupi, pastikan jumlah penarikan tidak lebih dari ' + balance);
                     return;
                 }
                 startLoading();

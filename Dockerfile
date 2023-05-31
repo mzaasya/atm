@@ -1,7 +1,5 @@
 FROM php:8.0.2-apache
 
-ENV APACHE_DOCUMENT_ROOT /public
-
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
@@ -26,7 +24,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www/html
 COPY . .
-RUN chmod -R 777 /var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+COPY ./public .
 RUN composer install
+RUN php artisan storage:link
+RUN rm index.php
+RUN mv index-shared.php index.php
+RUN chmod -R 777 /var/www/html
+RUN chmod -R 777 /var/www/html/storage
+RUN a2enmod rewrite
